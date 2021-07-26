@@ -1,6 +1,7 @@
 <template>
   <div id="app">
-    <input-Area ></input-Area>
+  <!-- label传入标签  radio获取单选框值 currentValue获取当前的单选框值 -->
+    <input-radio label="吐司" @radio-value="radio" :currentValue="this.value" >吐司</input-radio>
   </div>
 </template>
 
@@ -8,11 +9,16 @@
 export default {
   name: "App",
   data() {
-    return { 
-      };
+    return {
+      value: "",
+    };
   },
 
-  methods: {},
+  methods: {
+    radio(item) {
+      this.value = item;
+    },
+  },
 };
 </script>
 

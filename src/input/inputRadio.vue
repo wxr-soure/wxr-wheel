@@ -1,5 +1,5 @@
  <template>
-  <div class="inputRadio"   >
+  <div class="inputRadio">
     <input
       type="radio"
       :value="label"
@@ -7,11 +7,9 @@
       name="radio"
       @change="changeCheck"
     />
-    {{currentValue}}
-    <span :class="[currentValue==label?'checked':'']">
-        <slot></slot>
+    <span :class="[currentValue == label ? 'checked' : '']">
+      <slot></slot>
     </span>
-    
   </div>
 </template>
 
@@ -21,15 +19,14 @@ export default {
     label: {
       type: String,
       default() {
-        return 
-          "备选项"
+        return "备选项";
       },
-      currentValue:{
-          type:String,
-          default(){
-              return ''
-          }
-      }
+    },
+    currentValue: {
+      type: String,
+      default() {
+        return "";
+      },
     },
   },
   data() {
