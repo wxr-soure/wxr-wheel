@@ -2,42 +2,36 @@
   <div class="inputRadio">
     <input
       type="radio"
-      :value="label"
-      v-model="value"
+      :value="data.label"
+      v-model="data.value"
       name="radio"
-      @change="changeCheck"
     />
-    <span :class="[currentValue == label ? 'checked' : '']">
-      <slot></slot>
+    <span >
+      {{data.label}}
     </span>
   </div>
 </template>
 
 <script>
 export default {
+  name:'input-radio',
   props: {
-    label: {
-      type: String,
-      default() {
-        return "备选项";
-      },
-    },
-    currentValue: {
-      type: String,
-      default() {
-        return "";
-      },
+    data:{
+      type:Object,
+      default(){
+        return {
+          value:'',
+          label:'备选项'
+        }
+      }
     },
   },
   data() {
     return {
-      value: "",
     };
   },
   methods: {
-    changeCheck() {
-      this.$emit("radio-value", this.value);
-    },
+    
   },
 };
 </script>
@@ -47,3 +41,8 @@ export default {
   color: #409eff;
 }
 </style>
+// <input-radio :data="radioData"></input-radio>
+//  radioData: {
+        value: "",
+        label: "测试",
+      },

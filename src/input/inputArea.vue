@@ -1,30 +1,35 @@
 <template>
   <div class="inputarea">
-    <textarea :maxlength="maxlength" class="area" v-model="currentText"> </textarea>
-    <span class="subscript">{{currentLength}}/{{ maxlength }}</span>
+    <textarea :maxlength="data.maxlength" class="area" v-model="data.currentText">
+    </textarea>
+    <span class="subscript" v-if="data.showLimit">{{ currentLength }}/{{ data.maxlength }}</span>
   </div>
 </template>
 
 <script>
 export default {
+  name:'input-area',
   props: {
-    maxlength: {
-      type: Number,
+    data:{
+      type:Object,
       default() {
-        return 30;
+        return {
+          currentText:'',
+          maxlength:30,
+          showLimit:false
+        };
       },
     },
   },
-  data(){
-      return {
-     currentText:''
-      }
+  data() {
+    return {
+    };
   },
-  computed:{
-      currentLength(){
-          return this.currentText.length
-      }
-  }
+  computed: {
+    currentLength() {
+      return this.data.currentText.length;
+    },
+  },
 };
 </script>
 
@@ -37,7 +42,8 @@ export default {
   outline: none;
   border: 1px solid #dcdfe6;
   border-radius: 4px;
-  resize:none;
+  /* resize: none; */
+  min-height:40px
 }
 .area:focus {
   border: 1px solid #409eff;
@@ -46,9 +52,10 @@ export default {
   color: #909399;
   font-size: 12px;
   position: absolute;
-  display: inline-block;
-  right: 0;
-  padding: 0 10px;
-  line-height: 56px;
+  /* display: inline-block; */
+  right: 12px;
+  bottom: 0;
+  margin-bottom: 5px;
 }
 </style>
+//      <input-Area :showLimit="true" ：maxlength="20" :data="data"></input-Area> showLimit是否显示限制数字 maxlength限制长度

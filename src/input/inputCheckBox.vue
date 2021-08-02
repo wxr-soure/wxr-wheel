@@ -1,31 +1,29 @@
 <template>
-  <div class="inputCheckBox" :class="[disabled? 'disabled' : '']">
-    <input type="checkbox" v-model="value" :disabled="disabled" />
-    <span :class="[value ? 'checked' : '']">
-      <slot></slot>
+  <div class="inputCheckBox" :class="[data.disabled? 'disabled' : '']">
+    <input type="checkbox" v-model="data.value" :disabled="data.disabled" />
+    <span :class="[data.value ? 'checked' : '']">
+      {{data.label}}
     </span>
   </div>
 </template>
 
 <script>
 export default {
+  name:'input-checkBox',
   props: {
-    currentValue: {
-      type: String,
-      default() {
-        return "";
-      },
-    },
-    disabled:{
-        type:Boolean,
-        default(){
-            return false
+    data:{
+      type:Object,
+      default(){
+        return {
+          disabled:false,
+          value:"",
+          label:''
         }
+      }
     }
   },
   data() {
     return { 
-        value: "" 
         };
   },
   methods: {
@@ -42,3 +40,9 @@ export default {
   color: #409eff;
 }
 </style>
+//  <input-checkBox :data="checkData"></input-checkBox>
+//  checkData:{
+         disabled:false,
+          value:"",
+          label:'dd'
+      }

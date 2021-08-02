@@ -1,15 +1,17 @@
 <template>
   <div id="app">
-    <input-Area ></input-Area>
+<input-select></input-select>
   </div>
 </template>
 
 <script>
+
 export default {
   name: "App",
   data() {
-    return { 
-      };
+    return {
+    
+    };
   },
 
   methods: {},
