@@ -2,6 +2,7 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import '@/initWheel.js'
+import '@/element.js'
 
 Vue.config.productionTip = false
 
