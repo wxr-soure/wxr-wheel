@@ -1,23 +1,16 @@
 <template>
   <div id="app">
-    <input-date-range :data="datePicker"> </input-date-range>
+    <image-upload-list></image-upload-list>
   </div>
 </template>
 
 <script>
+import imageUploadList from "./uploadFiles/imageUploadList.vue";
 export default {
+  components: { imageUploadList },
   name: "App",
   data() {
-    return {
-      datePicker: {
-        required: false,
-        labelOne: "开始日期",
-        labelTow: "结束日期",
-        value1: "",
-        value2: "",
-        value: "",
-      },
-    };
+    return {};
   },
   methods: {},
 };
