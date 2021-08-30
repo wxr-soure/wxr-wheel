@@ -26,3 +26,7 @@ import imageUploadList from '@/uploadFiles/imageUploadList.vue'
 Vue.component('simple-upload',simpleUpload)
 Vue.component('image-upload',imageUpload)
 Vue.component('image-upload-list',imageUploadList)
+//uploadFile---------------------end
+
+import colorPicker from '@/colorPicker.vue'
+Vue.component('color-picker',colorPicker)

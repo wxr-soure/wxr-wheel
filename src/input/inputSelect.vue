@@ -1,7 +1,7 @@
 <template>
   <div class="inputSelect">
     <!-- 第一种 -->
-    <select name="" id="" v-model="data.value">
+    <!-- <select name="" id="" v-model="data.value">
       <option
         :value="item.key"
         v-for="(item, index) in data.option"
@@ -9,7 +9,30 @@
       >
         {{ item.label }}
       </option>
-    </select>
+    </select> -->
+
+    <!-- 第二种 -->
+    <div class="input-select" @click="showoption" ref="inputSelect">
+      <input type="text" v-model="data.value" class="input" readonly />
+      <img
+        src="@/assets/select.svg"
+        alt=""
+        class="select-icon"
+        ref="selectIcon"
+      />
+    </div>
+    <div class="optionList" v-show="showOption">
+      <ul class="optionBox">
+        <li
+          v-for="(item, index) in data.option"
+          :key="index"
+          class="options"
+          @click="chooseOPtion(item)"
+        >
+          {{ item.label }}
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 
@@ -34,17 +57,31 @@ export default {
   },
   data() {
     return {
-
+      showOption: false,
     };
   },
   methods: {
-   
+    showoption() {
+      this.showOption = !this.showOption;
+      if (this.showOption) {
+        this.$refs.selectIcon.className = "select-icon select-icon-up";
+        this.$refs.inputSelect.style.border='1px solid #409eff'
+      } else {
+        this.$refs.selectIcon.className = "select-icon select-icon-down";
+        this.$refs.inputSelect.style.border='1px solid #dcdfe6'
+      }
+    },
+    chooseOPtion(item) {
+      this.data.value = item.label;
+      this.showoption();
+    },
   },
 };
 </script>
 
-<style lang="less" scoped>
-.inputSelect {
+<style  scoped>
+/*第一种样式要用less*/
+/* .inputSelect {
   select {
     width: 160px;
     height: 30px;
@@ -102,56 +139,76 @@ export default {
       }
     }
   }
-//动画
-  // .keyframes(@r1,@r2,@name) {
-  //   @keyframes @name {
-  //     from {
-  //       transform: rotate(@r1);
-  //     }
-  //     to {
-  //       transform: rotate(@r2);
-  //     }
-  //   }
-  //   // @-moz-keyframes @name /* Firefox */ {
-  //   //   from {
-  //   //     -moz-transform: rotate(@r1);
-  //   //   }
-  //   //   to {
-  //   //     -moz-transform: rotate(@r2);
-  //   //   }
-  //   // }
+} */
 
-  //   @-webkit-keyframes @name /* Safari 和 Chrome */ {
-  //     from {
-  //       -webkit-transform: rotate(@r1);
-  //     }
-  //     to {
-  //       -webkit-transform: rotate(@r2);
-  //     }
-  //   }
+.input-select {
+  width: 240px;
+  height: 40px;
+  border: 1px solid #dcdfe6;
+  border-radius: 4px;
+}
+.input-select:active {
 
-  //   // @-o-keyframes @name /* Opera */ {
-  //   //   from {
-  //   //     -o-transform: rotate(@r1);
-  //   //   }
-  //   //   to {
-  //   //     -o-transform: rotate(@r2);
-  //   //   }
-  //   // }
-  // }
-  // //固定模式
-  // .animation(@animation-name, @animation-duration, @animation-timing-function, @animation-delay,
-  // @animation-iteration-count,
-  // @animation-direction) {
-  //   animation: @arguments;
-  //   /* Firefox: */
-  //   -moz-animation: @arguments;
-  //   /* Safari 和 Chrome: */
-  //   -webkit-animation: @arguments;
-  //   /* Opera: */
-  //   -o-animation: @arguments;
-  // }
-  // .keyframes(0,180deg,animation1_1); //初始化
-  // .keyframes(180deg,0,animation1_2); //初始化
+}
+.input {
+  border: none;
+  float: left;
+  height: 100%;
+  width: 80%;
+  padding: 0;
+  outline: none;
+  cursor: default;
+  font-size: 16px;
+  color: #606266;
+  padding-left: 10px;
+}
+
+.select-icon {
+  vertical-align: middle;
+  width: 8%;
+  height: 100%;
+  display: inline-block;
+}
+.select-icon-up {
+  animation: up 0.5s ease;
+  animation-fill-mode: forwards;
+  /* animation-fill-mode 这个属性必须写在animation之后才会生效 */
+}
+.select-icon-down {
+  animation: down 0.5s ease;
+  animation-fill-mode: forwards;
+}
+@keyframes up {
+  100% {
+    transform: rotate(180deg);
+  }
+}
+@keyframes down {
+  0% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+.optionList {
+  width: 242px;
+  border: 1px solid #e4e7ed;
+  margin-top: 10px;
+  border-radius: 4px;
+}
+.optionBox {
+  list-style: none;
+  padding: 0;
+  text-align: left;
+}
+.options {
+  height: 34px;
+  margin-bottom: 10px;
+  line-height: 34px;
+  padding-left: 10px;
+}
+.options:hover {
+  background-color: #f5f7fa;
 }
 </style>

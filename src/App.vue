@@ -1,16 +1,26 @@
 <template>
   <div id="app">
-    <image-upload-list></image-upload-list>
+    <input-select :data="optionData"></input-select>
   </div>
 </template>
 
 <script>
-import imageUploadList from "./uploadFiles/imageUploadList.vue";
+// import InputSelect from "./input/inputSelect.vue";
+// import  from "./.vue";
 export default {
-  components: { imageUploadList },
+  // components: {  },
   name: "App",
   data() {
-    return {};
+    return {
+      optionData: {
+        value: "",
+        option: [
+          { key: "dd", label: "水果" },
+          { key: "d2", label: "水果1" },
+          { key: "d5", label: "水果2" },
+        ],
+      },
+    };
   },
   methods: {},
 };
